@@ -4,6 +4,14 @@
 // library, exactly as the competition's kit prescribes. Outside the
 // grader, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+//
+// Determinism and output contract: this program reads only the files
+// already committed in this repository (app/, screenshots/) and the
+// vendored library; it performs no network access, reads no clock or
+// environment state other than MAKEFUN_OUTPUT_DIR, and emits no
+// timestamps or random values. Two runs from the same commit therefore
+// produce byte-identical dossier.json files, and the only outputs are
+// the copied app/ and screenshots/ trees plus dossier.json.
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
